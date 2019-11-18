@@ -29,4 +29,14 @@ class FlexWorkTimePolicy extends FixWorkTimePolicy {
     boolean isEarlyLeave(long realCheckOutTime) {
         return realCheckOutTime < this.realCheckInTime + duration;
     }
+
+    @Override
+    public String toString() {
+        return name + ":\n" +
+                "checkIn " + DateTime.timeToString(checkInTime) + "\n" +
+                "latest " + DateTime.timeToString(latestCheckInTime) + "\n" +
+                "duration " + DateTime.timeToString(duration) + "\n" +
+                "real CheckIn " + DateTime.timeToString(realCheckInTime) + "\n" +
+                "checkOut " + DateTime.timeToString(checkOutTime()) + "\n";
+    }
 }
