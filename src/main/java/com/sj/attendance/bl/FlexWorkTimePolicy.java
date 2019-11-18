@@ -16,17 +16,17 @@ class FlexWorkTimePolicy extends FixWorkTimePolicy {
     }
 
     @Override
-    long checkOutTime() {
+   public long checkOutTime() {
         return realCheckInTime + duration;
     }
 
     @Override
-    boolean isLate(long realCheckInTime) {
+    public boolean isLate(long realCheckInTime) {
         return realCheckInTime > this.latestCheckInTime;
     }
 
     @Override
-    boolean isEarlyLeave(long realCheckOutTime) {
+    public boolean isEarlyLeave(long realCheckOutTime) {
         return realCheckOutTime < this.realCheckInTime + duration;
     }
 
