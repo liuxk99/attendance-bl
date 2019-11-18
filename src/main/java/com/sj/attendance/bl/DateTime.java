@@ -15,13 +15,17 @@ public class DateTime {
         return hour * HOUR + min * MINUTE;
     }
 
+    static long calcTime(long hour, long min, long sec) {
+        return hour * HOUR + min * MINUTE + sec * SECOND;
+    }
+
     static long[] getTime(long time) {
         long hour = time / HOUR;
         long min = (time - hour * HOUR) / MINUTE;
         return new long[]{hour, min};
     }
 
-    static String timeToString(long time){
+    static String timeToString(long time) {
         long hour = time / HOUR;
         long min = (time - hour * HOUR) / MINUTE;
         return String.format("%02d:%02d", hour, min);
