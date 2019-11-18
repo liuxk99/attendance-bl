@@ -1,12 +1,12 @@
 package com.sj.attendance.bl;
 
 // 弹性工作时间
-class FlexibleWorkTime extends WorkTimeBase {
+class FlexWorkTimePolicy extends FixWorkTimePolicy {
     private long latestCheckInTime;
     private long realCheckInTime = 0L;
 
-    FlexibleWorkTime(long checkInTime, long duration, long latestCheckInTime) {
-        super(checkInTime, duration);
+    FlexWorkTimePolicy(String name, long checkInTime, long duration, long latestCheckInTime) {
+        super(name, checkInTime, duration);
 
         this.latestCheckInTime = latestCheckInTime;
     }
