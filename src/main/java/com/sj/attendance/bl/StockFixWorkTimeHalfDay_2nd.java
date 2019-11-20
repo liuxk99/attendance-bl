@@ -1,6 +1,6 @@
 package com.sj.attendance.bl;
 
-// 固定工作时间下午半天
+// 固定工时-下午半天
 class StockFixWorkTimeHalfDay_2nd extends FixWorkTimePolicy {
 
     StockFixWorkTimeHalfDay_2nd() {

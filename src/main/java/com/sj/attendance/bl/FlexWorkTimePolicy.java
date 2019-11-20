@@ -1,6 +1,6 @@
 package com.sj.attendance.bl;
 
-// 弹性工作时间
+// 弹性工时
 class FlexWorkTimePolicy extends FixWorkTimePolicy {
     private long latestCheckInTime;
     private long realCheckInTime = 0L;

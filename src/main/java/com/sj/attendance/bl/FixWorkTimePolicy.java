@@ -1,7 +1,5 @@
 package com.sj.attendance.bl;
 
-import sun.rmi.runtime.Log;
-
 public class FixWorkTimePolicy {
     // 名称，比如：XX集团-固定工时-全天
     String name;
