@@ -10,6 +10,10 @@ public class FixWorkTimePolicy {
     // 工作时长
     long duration;
 
+    public long getCheckInTime() {
+        return checkInTime;
+    }
+
     public FixWorkTimePolicy(String name, long checkInTime, long duration) {
         this.name = name;
         this.checkInTime = checkInTime;
@@ -21,10 +25,10 @@ public class FixWorkTimePolicy {
         return name + ":\n" +
                 "checkIn " + DateTime.timeToString(checkInTime) + "\n" +
                 "duration " + DateTime.timeToString(duration) + "\n" +
-                "checkOut " + DateTime.timeToString(checkOutTime()) + "\n";
+                "checkOut " + DateTime.timeToString(getCheckOutTime()) + "\n";
     }
 
-    public long checkOutTime() {
+    public long getCheckOutTime() {
         return checkInTime + duration;
     }
 
@@ -34,6 +38,6 @@ public class FixWorkTimePolicy {
 
     // 早退
     public boolean isEarlyLeave(long realCheckOutTime) {
-        return realCheckOutTime < this.checkOutTime();
+        return realCheckOutTime < this.getCheckOutTime();
     }
 }

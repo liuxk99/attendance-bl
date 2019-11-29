@@ -16,7 +16,7 @@ class FlexWorkTimePolicy extends FixWorkTimePolicy {
     }
 
     @Override
-   public long checkOutTime() {
+   public long getCheckOutTime() {
         return realCheckInTime + duration;
     }
 
@@ -37,6 +37,6 @@ class FlexWorkTimePolicy extends FixWorkTimePolicy {
                 "latest " + DateTime.timeToString(latestCheckInTime) + "\n" +
                 "duration " + DateTime.timeToString(duration) + "\n" +
                 "real CheckIn " + DateTime.timeToString(realCheckInTime) + "\n" +
-                "checkOut " + DateTime.timeToString(checkOutTime()) + "\n";
+                "checkOut " + DateTime.timeToString(getCheckOutTime()) + "\n";
     }
 }
