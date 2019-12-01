@@ -1,6 +1,10 @@
 package com.sj.attendance.bl;
 
 public class FixWorkTimePolicy {
+    public String getName() {
+        return name;
+    }
+
     // 名称，比如：XX集团-固定工时-全天
     String name;
 
