@@ -1,9 +1,13 @@
 package com.sj.attendance.bl;
 
 // 弹性工时
-class FlexWorkTimePolicy extends FixWorkTimePolicy {
+public class FlexWorkTimePolicy extends FixWorkTimePolicy {
     private long latestCheckInTime;
     private long realCheckInTime = 0L;
+
+    public long getLatestCheckInTime() {
+        return latestCheckInTime;
+    }
 
     FlexWorkTimePolicy(String name, long checkInTime, long duration, long latestCheckInTime) {
         super(name, checkInTime, duration);
@@ -11,7 +15,7 @@ class FlexWorkTimePolicy extends FixWorkTimePolicy {
         this.latestCheckInTime = latestCheckInTime;
     }
 
-    void setRealCheckInTime(long realCheckInTime) {
+    public void setRealCheckInTime(long realCheckInTime) {
         this.realCheckInTime = realCheckInTime;
     }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkTimePolicyFactory {
-    public static List<FixWorkTimePolicy> createPolicies() {
+    static List<FixWorkTimePolicy> createPolicies() {
         List<FixWorkTimePolicy> policies = new ArrayList<FixWorkTimePolicy>();
         policies.add(new StockFlexWorkTimeFullDay());
         policies.add(new StockFlexWorkTimeAM());
@@ -21,7 +21,7 @@ public class WorkTimePolicyFactory {
         return workTimePolicySetList;
     }
 
-    public static WorkTimePolicySet createWorkTimePolicySetFixWorkTime() {
+    static WorkTimePolicySet createWorkTimePolicySetFixWorkTime() {
         WorkTimePolicySet workTimePolicySet = new WorkTimePolicySet("XX集团-固定工时");
         FixWorkTimePolicy policy = new StockFixWorkTimeFullDay();
         policy.setTitle(StockWorktime.SHORT_TILE_FULL);
@@ -38,7 +38,7 @@ public class WorkTimePolicyFactory {
         return workTimePolicySet;
     }
 
-    public static WorkTimePolicySet createWorkTimePolicySetFlexWorkTime() {
+    static WorkTimePolicySet createWorkTimePolicySetFlexWorkTime() {
         WorkTimePolicySet workTimePolicySet = new WorkTimePolicySet("XX集团-弹性工时");
         FixWorkTimePolicy policy = new StockFlexWorkTimeFullDay();
         policy.setTitle(StockWorktime.SHORT_TILE_FULL);
