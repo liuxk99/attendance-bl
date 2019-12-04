@@ -43,7 +43,7 @@ public class WorkTimePolicyTest {
 
     @Test
     public void testcase02_FixWorkTimeHalfDay_1st() throws Exception {
-        FixWorkTimePolicy policy = new StockFixWorkTimeHalfDay_1st();
+        FixWorkTimePolicy policy = new StockFixWorkTimeAM();
         System.out.println(policy);
 
         WorkTimeCommonTest.testcase_FixWorkTime_Morning_Late(policy);
@@ -52,7 +52,7 @@ public class WorkTimePolicyTest {
 
     @Test
     public void testcase03_FixWorkTimeHalfDay_2nd() throws Exception {
-        FixWorkTimePolicy policy = new StockFixWorkTimeHalfDay_2nd();
+        FixWorkTimePolicy policy = new StockFixWorkTimePM();
         System.out.println(policy);
 
         WorkTimeCommonTest.testcase_WorkTime_HalfDay_Late(policy);
@@ -74,7 +74,7 @@ public class WorkTimePolicyTest {
 
     @Test
     public void testcase05_FlexibleWorkTimeHalfDay_1st() throws Exception {
-        FlexWorkTimePolicy flexibleWorkTime = new StockFlexWorkTimeHalfDay_1st();
+        FlexWorkTimePolicy flexibleWorkTime = new StockFlexWorkTimeAM();
         // 09:30 上班
         flexibleWorkTime.setRealCheckInTime(WorkTimeCommonTest.REAL_CHECK_IN_TIME_09_30);
 

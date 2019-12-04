@@ -8,6 +8,16 @@ public class FixWorkTimePolicy {
     // 名称，比如：XX集团-固定工时-全天
     String name;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    String title;
+
     // 上班时间
     long checkInTime;
 
@@ -27,6 +37,13 @@ public class FixWorkTimePolicy {
     @Override
     public String toString() {
         return name + ":\n" +
+                "checkIn " + DateTime.timeToString(checkInTime) + "\n" +
+                "duration " + DateTime.timeToString(duration) + "\n" +
+                "checkOut " + DateTime.timeToString(getCheckOutTime()) + "\n";
+    }
+
+    public String toShortString() {
+        return title + ":\n" +
                 "checkIn " + DateTime.timeToString(checkInTime) + "\n" +
                 "duration " + DateTime.timeToString(duration) + "\n" +
                 "checkOut " + DateTime.timeToString(getCheckOutTime()) + "\n";

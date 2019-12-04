@@ -7,10 +7,51 @@ public class WorkTimePolicyFactory {
     public static List<FixWorkTimePolicy> createPolicies() {
         List<FixWorkTimePolicy> policies = new ArrayList<FixWorkTimePolicy>();
         policies.add(new StockFlexWorkTimeFullDay());
-        policies.add(new StockFlexWorkTimeHalfDay_1st());
-        policies.add(new StockFixWorkTimeHalfDay_2nd());
+        policies.add(new StockFlexWorkTimeAM());
+        policies.add(new StockFixWorkTimePM());
         policies.add(new StockFixWorkTimeFullDay());
-        policies.add(new StockFixWorkTimeHalfDay_1st());
+        policies.add(new StockFixWorkTimeAM());
         return policies;
+    }
+
+    public static List<WorkTimePolicySet> createWorkTimePolicySetList() {
+        List<WorkTimePolicySet> workTimePolicySetList = new ArrayList<WorkTimePolicySet>();
+        workTimePolicySetList.add(createWorkTimePolicySetFixWorkTime());
+        workTimePolicySetList.add(createWorkTimePolicySetFlexWorkTime());
+        return workTimePolicySetList;
+    }
+
+    public static WorkTimePolicySet createWorkTimePolicySetFixWorkTime() {
+        WorkTimePolicySet workTimePolicySet = new WorkTimePolicySet("XX集团-固定工时");
+        FixWorkTimePolicy policy = new StockFixWorkTimeFullDay();
+        policy.setTitle(StockWorktime.SHORT_TILE_FULL);
+        workTimePolicySet.addPolicy(policy);
+
+        policy = new StockFixWorkTimeAM();
+        policy.setTitle(StockWorktime.SHORT_TILE_AM);
+        workTimePolicySet.addPolicy(policy);
+
+        policy = new StockFixWorkTimePM();
+        policy.setTitle(StockWorktime.SHORT_TILE_PM);
+        workTimePolicySet.addPolicy(policy);
+
+        return workTimePolicySet;
+    }
+
+    public static WorkTimePolicySet createWorkTimePolicySetFlexWorkTime() {
+        WorkTimePolicySet workTimePolicySet = new WorkTimePolicySet("XX集团-弹性工时");
+        FixWorkTimePolicy policy = new StockFlexWorkTimeFullDay();
+        policy.setTitle(StockWorktime.SHORT_TILE_FULL);
+        workTimePolicySet.addPolicy(policy);
+
+        policy = new StockFlexWorkTimeAM();
+        policy.setTitle(StockWorktime.SHORT_TILE_AM);
+        workTimePolicySet.addPolicy(policy);
+
+        policy = new StockFixWorkTimePM();
+        policy.setTitle(StockWorktime.SHORT_TILE_PM);
+        workTimePolicySet.addPolicy(policy);
+
+        return workTimePolicySet;
     }
 }
