@@ -1,6 +1,8 @@
 package com.sj.attendance.bl;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateTime {
     private static final int HOURS_PER_DAY = 24;
@@ -30,17 +32,28 @@ public class DateTime {
     public static String timeToString(long time) {
         long hour = time / HOUR;
         long min = (time - hour * HOUR) / MINUTE;
-        return String.format("%02d:%02d", hour, min);
+        return String.format(Locale.getDefault(), "%02d:%02d", hour, min);
     }
 
     public static String formatTime(Date date) {
-        return String.format("%02d:%02d", date.getHours(), date.getMinutes());
+        return String.format(Locale.getDefault(), "%02d:%02d", date.getHours(), date.getMinutes());
     }
 
     public static String formatTime(long time) {
         Date date = new Date();
         date.setTime(time);
-        return String.format("%02d:%02d", date.getHours(), date.getMinutes());
+        return String.format(Locale.getDefault(), "%02d:%02d", date.getHours(), date.getMinutes());
+    }
+
+    public static long compoundTime(long offset) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        calendar.clear();
+        calendar.set(year, month, day);
+        return calendar.getTimeInMillis() + offset;
     }
 
     static public long dayInMillisByDate(Date date) {
@@ -51,7 +64,6 @@ public class DateTime {
     }
 
     public static long timeInMillisByDate(Date date) {
-        long nowTime = date.getHours() * DateTime.HOUR + date.getMinutes() * DateTime.MINUTE + date.getSeconds() * DateTime.SECOND;
-        return nowTime;
+        return date.getHours() * DateTime.HOUR + date.getMinutes() * DateTime.MINUTE + date.getSeconds() * DateTime.SECOND;
     }
 }

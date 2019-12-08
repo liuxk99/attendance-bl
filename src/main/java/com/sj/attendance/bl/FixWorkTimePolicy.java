@@ -21,6 +21,10 @@ public class FixWorkTimePolicy {
     // 上班时间
     long checkInTime;
 
+    public long getDuration() {
+        return duration;
+    }
+
     // 工作时长
     long duration;
 
