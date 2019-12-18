@@ -57,13 +57,18 @@ public class DateTime {
     }
 
     static public long dayInMillisByDate(Date date) {
-        date.setHours(0);
-        date.setMinutes(0);
-        date.setSeconds(0);
-        return date.getTime();
+        Date tmp = (Date) date.clone();
+        tmp.setHours(0);
+        tmp.setMinutes(0);
+        tmp.setSeconds(0);
+        return tmp.getTime();
     }
 
     public static long timeInMillisByDate(Date date) {
         return date.getHours() * DateTime.HOUR + date.getMinutes() * DateTime.MINUTE + date.getSeconds() * DateTime.SECOND;
+    }
+
+    public static String formatTime(int hour, int minute) {
+        return String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
     }
 }
