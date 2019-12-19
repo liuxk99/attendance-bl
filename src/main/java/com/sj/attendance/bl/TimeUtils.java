@@ -1,5 +1,8 @@
 package com.sj.attendance.bl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -73,5 +76,17 @@ public class TimeUtils {
 
     public static String formatTime(int hour, int minute) {
         return String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
+    }
+
+    static final String ISO_9601_DF = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ";
+
+    public static String toISO8601(Date date) {
+        final DateFormat sdf_iso_8601 = new SimpleDateFormat(ISO_9601_DF, Locale.getDefault());
+        return sdf_iso_8601.format(date);
+    }
+
+    public static Date fromISO8601(String str) throws ParseException {
+        final DateFormat sdf_iso_8601 = new SimpleDateFormat(ISO_9601_DF, Locale.getDefault());
+        return sdf_iso_8601.parse(str);
     }
 }
