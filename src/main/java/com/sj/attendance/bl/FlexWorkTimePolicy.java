@@ -1,5 +1,7 @@
 package com.sj.attendance.bl;
 
+import java.util.Locale;
+
 // 弹性工时
 public class FlexWorkTimePolicy extends FixWorkTimePolicy {
     private long latestCheckInTime;
@@ -21,7 +23,11 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
 
     @Override
     public long getCheckOutTime() {
-        return realCheckInTime + duration;
+        long checkIn = checkInTime;
+        if (realCheckInTime != 0L) {
+            checkIn = Math.max(realCheckInTime, checkInTime);
+        }
+        return checkIn + duration;
     }
 
     @Override
@@ -31,25 +37,38 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
 
     @Override
     public boolean isEarlyLeave(long realCheckOutTime) {
-        return realCheckOutTime < this.realCheckInTime + duration;
+        return realCheckOutTime < getCheckOutTime();
     }
 
     @Override
     public String toString() {
         return name + ":\n" +
-                "checkIn " + DateTime.timeToString(checkInTime) + "\n" +
-                "latest " + DateTime.timeToString(latestCheckInTime) + "\n" +
-                "duration " + DateTime.timeToString(duration) + "\n" +
-                "real CheckIn " + DateTime.timeToString(realCheckInTime) + "\n" +
-                "checkOut " + DateTime.timeToString(getCheckOutTime()) + "\n";
+                "checkIn: " + toCheckIn() + "\n" +
+                "checkOut: " + toCheckOut() + "\n" +
+                "real CheckIn: " + DateTime.formatRefTime(realCheckInTime) + "\n" +
+                "plan checkOut: " + DateTime.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     public String toShortString() {
         return title + ":\n" +
-                "checkIn " + DateTime.timeToString(checkInTime) + "\n" +
-                "latest " + DateTime.timeToString(latestCheckInTime) + "\n" +
-                "duration " + DateTime.timeToString(duration) + "\n" +
-                "real CheckIn " + DateTime.timeToString(realCheckInTime) + "\n" +
-                "checkOut " + DateTime.timeToString(getCheckOutTime()) + "\n";
+                "checkIn: " + toCheckIn() + "\n" +
+                "checkOut: " + toCheckOut() + "\n" +
+                "duration: " + DateTime.formatRefTime(duration) + "\n" +
+                "plan checkOut: " + DateTime.formatRefTime(getCheckOutTime()) + "\n";
     }
+
+    @Override
+    public String toCheckIn() {
+        final String checkInStr = DateTime.formatRefTime(checkInTime);
+        final String latestCheckInStr = DateTime.formatRefTime(latestCheckInTime);
+        return String.format(Locale.getDefault(), "%s~%s", checkInStr, latestCheckInStr);
+    }
+
+
+    public String toCheckOut() {
+        final String checkInStr = DateTime.formatRefTime(checkInTime + duration);
+        final String latestCheckInStr = DateTime.formatRefTime(latestCheckInTime + duration);
+        return String.format(Locale.getDefault(), "%s~%s", checkInStr, latestCheckInStr);
+    }
+
 }

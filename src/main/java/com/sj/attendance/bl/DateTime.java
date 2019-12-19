@@ -15,11 +15,11 @@ public class DateTime {
     public static final long HOUR = MINUTE * MINUTES_PER_HOUR;
     public static final long DAY = HOUR * HOURS_PER_DAY;
 
-    static long calcTime(long hour, long min) {
+    static long compoundTime(long hour, long min) {
         return hour * HOUR + min * MINUTE;
     }
 
-    static long calcTime(long hour, long min, long sec) {
+    static long compoundTime(long hour, long min, long sec) {
         return hour * HOUR + min * MINUTE + sec * SECOND;
     }
 
@@ -29,7 +29,7 @@ public class DateTime {
         return new long[]{hour, min};
     }
 
-    public static String timeToString(long time) {
+    public static String formatRefTime(long time) {
         long hour = time / HOUR;
         long min = (time - hour * HOUR) / MINUTE;
         return String.format(Locale.getDefault(), "%02d:%02d", hour, min);
