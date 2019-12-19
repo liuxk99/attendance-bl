@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /*
-* Utilities for Time, such as Date, Calendar.
-* */
+ * Utilities for Time, such as Date, Calendar.
+ * */
 public class TimeUtils {
     private static final int HOURS_PER_DAY = 24;
     private static final int MINUTES_PER_HOUR = 60;
@@ -62,14 +62,6 @@ public class TimeUtils {
         return calendar.getTimeInMillis() + offset;
     }
 
-    static public long dayInMillisByDate(Date date) {
-        Date tmp = (Date) date.clone();
-        tmp.setHours(0);
-        tmp.setMinutes(0);
-        tmp.setSeconds(0);
-        return tmp.getTime();
-    }
-
     public static long timeInMillisByDate(Date date) {
         return date.getHours() * TimeUtils.HOUR + date.getMinutes() * TimeUtils.MINUTE + date.getSeconds() * TimeUtils.SECOND;
     }
@@ -88,5 +80,24 @@ public class TimeUtils {
     public static Date fromISO8601(String str) throws ParseException {
         final DateFormat sdf_iso_8601 = new SimpleDateFormat(ISO_9601_DF, Locale.getDefault());
         return sdf_iso_8601.parse(str);
+    }
+
+    public static boolean isSameDay(Date date1, Date date2) {
+        return date1.getYear() == date2.getYear()
+                && date1.getMonth() == date2.getMonth()
+                && date1.getDay() == date2.getDay();
+    }
+
+    static public long getDayDate(Date date) {
+        Date tmp = (Date) date.clone();
+        tmp.setHours(0);
+        tmp.setMinutes(0);
+        tmp.setSeconds(0);
+        return tmp.getTime();
+    }
+
+    public static long getDayTime(Date date) {
+        long tmp = getDayDate(date);
+        return date.getTime() - tmp;
     }
 }

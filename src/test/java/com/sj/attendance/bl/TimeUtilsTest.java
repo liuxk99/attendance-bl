@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -41,5 +42,17 @@ public class TimeUtilsTest {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         Date d = sdf.parse(dateStr2);
         System.out.println(d);
+    }
+
+    @Test
+    public void testcase04_time() {
+        Date date = new Date();
+        System.out.println(date);
+
+        long dayTime = TimeUtils.getDayTime(date);
+        long dayDate = TimeUtils.getDayDate(date);
+
+        System.out.println(new Date(dayTime));
+        System.out.println(new Date(dayDate));
     }
 }

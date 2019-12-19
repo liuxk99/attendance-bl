@@ -1,5 +1,7 @@
 package com.sj.attendance.bl;
 
+import java.util.Date;
+
 public class FixWorkTimePolicy {
     public String getName() {
         return name;
@@ -61,10 +63,18 @@ public class FixWorkTimePolicy {
         return realCheckInTime > checkInTime;
     }
 
+    public boolean isLate(Date realCheckInDate) {
+        return TimeUtils.getDayTime(realCheckInDate) > checkInTime;
+    }
+
     // 早退
     public boolean isEarlyLeave(long realCheckOutTime) {
-        TimeUtils.formatRefTime(realCheckOutTime);
-        TimeUtils.formatRefTime(getCheckOutTime());
+        return realCheckOutTime < this.getCheckOutTime();
+    }
+
+    // 早退
+    public boolean isEarlyLeave(Date realCheckOutDate) {
+        long realCheckOutTime = TimeUtils.getDayTime(realCheckOutDate);
         return realCheckOutTime < this.getCheckOutTime();
     }
 

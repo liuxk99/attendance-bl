@@ -105,4 +105,19 @@ public class WorkTimePolicyTest {
         assertFalse(policy.isEarlyLeave(TimeUtils.compoundTime(14, 1)));
     }
 
+    @Test
+    public void testcase08_FlexibleWorkTime_FullDay() throws Exception {
+        FlexWorkTimePolicy flexibleWorkTime = new StockFlexWorkTimeFullDay();
+        // 09:30 上班
+        flexibleWorkTime.setRealCheckInTime(TimeUtils.compoundTime(9, 13));
+
+        FixWorkTimePolicy policy = flexibleWorkTime;
+        System.out.println(policy);
+
+        WorkTimeCommonTest.testcase_FlexWorkTime_Morning_Late(policy);
+
+        assertTrue(policy.isEarlyLeave(TimeUtils.compoundTime(18, 12)));
+        assertFalse(policy.isEarlyLeave(TimeUtils.compoundTime(18, 15)));
+        assertFalse(policy.isEarlyLeave(TimeUtils.compoundTime(18, 35)));
+    }
 }

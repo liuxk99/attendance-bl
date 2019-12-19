@@ -1,5 +1,6 @@
 package com.sj.attendance.bl;
 
+import java.util.Date;
 import java.util.Locale;
 
 // 弹性工时
@@ -17,8 +18,12 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
         this.latestCheckInTime = latestCheckInTime;
     }
 
-    public void setRealCheckInTime(long realCheckInTime) {
-        this.realCheckInTime = realCheckInTime;
+    public void setRealCheckInTime(long refTime) {
+        this.realCheckInTime = refTime;
+    }
+
+    public void setRealCheckInTime(Date date) {
+        this.realCheckInTime = TimeUtils.getDayTime(date);
     }
 
     @Override
@@ -32,7 +37,12 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
 
     @Override
     public boolean isLate(long realCheckInTime) {
-        return realCheckInTime > this.latestCheckInTime;
+        return realCheckInTime > latestCheckInTime;
+    }
+
+    @Override
+    public boolean isLate(Date realCheckInDate) {
+        return TimeUtils.getDayTime(realCheckInDate) > latestCheckInTime;
     }
 
     @Override
