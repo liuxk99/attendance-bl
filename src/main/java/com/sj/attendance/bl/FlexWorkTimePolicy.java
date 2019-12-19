@@ -45,29 +45,29 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
         return name + ":\n" +
                 "checkIn: " + toCheckIn() + "\n" +
                 "checkOut: " + toCheckOut() + "\n" +
-                "real CheckIn: " + DateTime.formatRefTime(realCheckInTime) + "\n" +
-                "plan checkOut: " + DateTime.formatRefTime(getCheckOutTime()) + "\n";
+                "real CheckIn: " + TimeUtils.formatRefTime(realCheckInTime) + "\n" +
+                "plan checkOut: " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     public String toShortString() {
         return title + ":\n" +
                 "checkIn: " + toCheckIn() + "\n" +
                 "checkOut: " + toCheckOut() + "\n" +
-                "duration: " + DateTime.formatRefTime(duration) + "\n" +
-                "plan checkOut: " + DateTime.formatRefTime(getCheckOutTime()) + "\n";
+                "duration: " + TimeUtils.formatRefTime(duration) + "\n" +
+                "plan checkOut: " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     @Override
     public String toCheckIn() {
-        final String checkInStr = DateTime.formatRefTime(checkInTime);
-        final String latestCheckInStr = DateTime.formatRefTime(latestCheckInTime);
+        final String checkInStr = TimeUtils.formatRefTime(checkInTime);
+        final String latestCheckInStr = TimeUtils.formatRefTime(latestCheckInTime);
         return String.format(Locale.getDefault(), "%s~%s", checkInStr, latestCheckInStr);
     }
 
 
     public String toCheckOut() {
-        final String checkInStr = DateTime.formatRefTime(checkInTime + duration);
-        final String latestCheckInStr = DateTime.formatRefTime(latestCheckInTime + duration);
+        final String checkInStr = TimeUtils.formatRefTime(checkInTime + duration);
+        final String latestCheckInStr = TimeUtils.formatRefTime(latestCheckInTime + duration);
         return String.format(Locale.getDefault(), "%s~%s", checkInStr, latestCheckInStr);
     }
 

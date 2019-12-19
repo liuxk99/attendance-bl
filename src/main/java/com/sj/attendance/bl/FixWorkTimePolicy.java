@@ -41,16 +41,16 @@ public class FixWorkTimePolicy {
     @Override
     public String toString() {
         return name + ":\n" +
-                "checkIn " + DateTime.formatRefTime(checkInTime) + "\n" +
-                "duration " + DateTime.formatRefTime(duration) + "\n" +
-                "checkOut " + DateTime.formatRefTime(getCheckOutTime()) + "\n";
+                "checkIn " + TimeUtils.formatRefTime(checkInTime) + "\n" +
+                "duration " + TimeUtils.formatRefTime(duration) + "\n" +
+                "checkOut " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     public String toShortString() {
         return title + ":\n" +
-                "checkIn " + DateTime.formatRefTime(checkInTime) + "\n" +
-                "duration " + DateTime.formatRefTime(duration) + "\n" +
-                "checkOut " + DateTime.formatRefTime(getCheckOutTime()) + "\n";
+                "checkIn " + TimeUtils.formatRefTime(checkInTime) + "\n" +
+                "duration " + TimeUtils.formatRefTime(duration) + "\n" +
+                "checkOut " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     public long getCheckOutTime() {
@@ -63,16 +63,16 @@ public class FixWorkTimePolicy {
 
     // 早退
     public boolean isEarlyLeave(long realCheckOutTime) {
-        DateTime.formatRefTime(realCheckOutTime);
-        DateTime.formatRefTime(getCheckOutTime());
+        TimeUtils.formatRefTime(realCheckOutTime);
+        TimeUtils.formatRefTime(getCheckOutTime());
         return realCheckOutTime < this.getCheckOutTime();
     }
 
     public String toCheckIn() {
-        return DateTime.formatRefTime(checkInTime);
+        return TimeUtils.formatRefTime(checkInTime);
     }
 
     public String toCheckOut() {
-        return DateTime.formatRefTime(getCheckOutTime());
+        return TimeUtils.formatRefTime(getCheckOutTime());
     }
 }

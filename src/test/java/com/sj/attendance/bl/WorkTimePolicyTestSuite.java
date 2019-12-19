@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static com.sj.attendance.bl.WorkTimePolicyFactory.*;
+import static com.sj.attendance.bl.WorkTimePolicyFactory.createWorkTimePolicySetFixWorkTime;
+import static com.sj.attendance.bl.WorkTimePolicyFactory.createWorkTimePolicySetFlexWorkTime;
+import static com.sj.attendance.bl.WorkTimePolicyFactory.createWorkTimePolicySetList;
 
 public class WorkTimePolicyTestSuite {
 
@@ -21,9 +23,9 @@ public class WorkTimePolicyTestSuite {
     }
 
     @Test
-    public void testcase_PolicySet(){
+    public void testcase_PolicySet() {
         List<WorkTimePolicySet> workTimePolicySetList = createWorkTimePolicySetList();
-        for (WorkTimePolicySet policySet: workTimePolicySetList){
+        for (WorkTimePolicySet policySet : workTimePolicySetList) {
             System.out.println("=>---");
             System.out.print(policySet);
             System.out.println("<----");

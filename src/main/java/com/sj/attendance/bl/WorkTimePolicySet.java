@@ -30,7 +30,7 @@ public class WorkTimePolicySet {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(String.format("title: %s\n", title));
-        for (FixWorkTimePolicy policy: workTimePolicyList) {
+        for (FixWorkTimePolicy policy : workTimePolicyList) {
             sb.append(policy.toShortString());
         }
         return sb.toString();

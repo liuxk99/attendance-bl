@@ -4,7 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateTime {
+/*
+* Utilities for Time, such as Date, Calendar.
+* */
+public class TimeUtils {
     private static final int HOURS_PER_DAY = 24;
     private static final int MINUTES_PER_HOUR = 60;
     private static final int SECONDS_PER_MINUTE = 60;
@@ -65,7 +68,7 @@ public class DateTime {
     }
 
     public static long timeInMillisByDate(Date date) {
-        return date.getHours() * DateTime.HOUR + date.getMinutes() * DateTime.MINUTE + date.getSeconds() * DateTime.SECOND;
+        return date.getHours() * TimeUtils.HOUR + date.getMinutes() * TimeUtils.MINUTE + date.getSeconds() * TimeUtils.SECOND;
     }
 
     public static String formatTime(int hour, int minute) {

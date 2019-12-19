@@ -37,7 +37,7 @@ public class WorkTimePolicyTest {
 //        System.out.println(now.getMinutes());
 //        System.out.println(now.getSeconds());
 
-        long time = DateTime.compoundTime(now.getHours(), now.getMinutes(), now.getSeconds());
+        long time = TimeUtils.compoundTime(now.getHours(), now.getMinutes(), now.getSeconds());
         assertTrue(policy.isLate(time));
         assertTrue(policy.isEarlyLeave(time));
     }
@@ -90,7 +90,7 @@ public class WorkTimePolicyTest {
     public void testcase07_FlexibleWorkTime_AM() throws Exception {
         FlexWorkTimePolicy flexibleWorkTime = new StockFlexWorkTimeAM();
         // 09:30 上班
-        flexibleWorkTime.setRealCheckInTime(DateTime.compoundTime(8, 55));
+        flexibleWorkTime.setRealCheckInTime(TimeUtils.compoundTime(8, 55));
 
         FixWorkTimePolicy policy = flexibleWorkTime;
         System.out.println(policy);
@@ -98,11 +98,11 @@ public class WorkTimePolicyTest {
         WorkTimeCommonTest.testcase_FlexWorkTime_Morning_Late(policy);
 
         // 13:56 早退
-        assertTrue(policy.isEarlyLeave(DateTime.compoundTime(13, 56)));
+        assertTrue(policy.isEarlyLeave(TimeUtils.compoundTime(13, 56)));
         // 14:00 没有早退
-        assertFalse(policy.isEarlyLeave(DateTime.compoundTime(14, 0)));
+        assertFalse(policy.isEarlyLeave(TimeUtils.compoundTime(14, 0)));
         // 14:01 没有早退
-        assertFalse(policy.isEarlyLeave(DateTime.compoundTime(14, 1)));
+        assertFalse(policy.isEarlyLeave(TimeUtils.compoundTime(14, 1)));
     }
 
 }
