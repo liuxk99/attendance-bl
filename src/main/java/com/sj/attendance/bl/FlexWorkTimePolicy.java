@@ -81,4 +81,9 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
         return String.format(Locale.getDefault(), "%s~%s", checkInStr, latestCheckInStr);
     }
 
+    @Override
+    public long getPlanCheckOutTime(Date checkInDate) {
+        setRealCheckInTime(checkInDate);
+        return super.getPlanCheckOutTime(checkInDate);
+    }
 }

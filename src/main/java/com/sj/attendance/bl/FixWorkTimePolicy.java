@@ -85,4 +85,8 @@ public class FixWorkTimePolicy {
     public String toCheckOut() {
         return TimeUtils.formatRefTime(getCheckOutTime());
     }
+
+    public long getPlanCheckOutTime(Date checkInDate) {
+        return TimeUtils.getDayDate(checkInDate) + getCheckOutTime();
+    }
 }
