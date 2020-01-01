@@ -21,6 +21,9 @@ public class TimeUtils {
     public static final long HOUR = MINUTE * MINUTES_PER_HOUR;
     public static final long DAY = HOUR * HOURS_PER_DAY;
 
+    public static final long AM_09 = HOUR * 9;
+    public static final long PM_05 = HOUR * 17;
+
     static long compoundTime(long hour, long min) {
         return hour * HOUR + min * MINUTE;
     }
