@@ -10,15 +10,15 @@ public class FixWorkTimePolicy {
     // 名称，比如：XX集团-固定工时-全天
     String name;
 
-    public String getTitle() {
-        return title;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
-    String title;
+    String shortName;
 
     // 上班时间
     long checkInTime;
@@ -43,13 +43,14 @@ public class FixWorkTimePolicy {
     @Override
     public String toString() {
         return name + ":\n" +
+                "shortName " + shortName + "\n" +
                 "checkIn " + TimeUtils.formatRefTime(checkInTime) + "\n" +
                 "duration " + TimeUtils.formatRefTime(duration) + "\n" +
                 "checkOut " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     public String toShortString() {
-        return title + ":\n" +
+        return shortName + ":\n" +
                 "checkIn " + TimeUtils.formatRefTime(checkInTime) + "\n" +
                 "duration " + TimeUtils.formatRefTime(duration) + "\n" +
                 "checkOut " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";

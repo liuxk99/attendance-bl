@@ -60,7 +60,7 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
     }
 
     public String toShortString() {
-        return title + ":\n" +
+        return shortName + ":\n" +
                 "checkIn: " + toCheckIn() + "\n" +
                 "checkOut: " + toCheckOut() + "\n" +
                 "duration: " + TimeUtils.formatRefTime(duration) + "\n" +
