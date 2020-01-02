@@ -11,6 +11,11 @@ import java.util.Locale;
  * Utilities for Time, such as Date, Calendar.
  * */
 public class TimeUtils {
+    public static final long DEF_CHECK_IN_HOUR = 9;
+    public static final long DEF_CHECK_OUT_MIN = 0;
+    public static final long DEF_LATEST_CHECK_IN_HOUR = 10;
+    public static final long DEF_CHECK_OUT_HOUR = 18;
+
     private static final int HOURS_PER_DAY = 24;
     private static final int MINUTES_PER_HOUR = 60;
     private static final int SECONDS_PER_MINUTE = 60;
@@ -24,7 +29,7 @@ public class TimeUtils {
     public static final long AM_09 = HOUR * 9;
     public static final long PM_05 = HOUR * 17;
 
-    static long compoundTime(long hour, long min) {
+    public static long compoundTime(long hour, long min) {
         return hour * HOUR + min * MINUTE;
     }
 
@@ -102,5 +107,13 @@ public class TimeUtils {
     public static long getDayTime(Date date) {
         long tmp = getDayDate(date);
         return date.getTime() - tmp;
+    }
+
+    public static int getHour(long refTime) {
+        return (int) (refTime / HOUR);
+    }
+
+    public static int getMinute(long refTime) {
+        return (int) (refTime % HOUR);
     }
 }

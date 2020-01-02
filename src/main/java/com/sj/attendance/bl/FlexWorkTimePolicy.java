@@ -12,7 +12,7 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
         return latestCheckInTime;
     }
 
-    FlexWorkTimePolicy(String name, long checkInTime, long duration, long latestCheckInTime) {
+    public FlexWorkTimePolicy(String name, long checkInTime, long duration, long latestCheckInTime) {
         super(name, checkInTime, duration);
 
         this.latestCheckInTime = latestCheckInTime;
