@@ -40,6 +40,13 @@ public class FixWorkTimePolicy {
         this.duration = duration;
     }
 
+    public FixWorkTimePolicy(String name, String shortName, long checkInTime, long duration) {
+        this.name = name;
+        this.shortName = shortName;
+        this.checkInTime = checkInTime;
+        this.duration = duration;
+    }
+
     @Override
     public String toString() {
         return name + ":\n" +

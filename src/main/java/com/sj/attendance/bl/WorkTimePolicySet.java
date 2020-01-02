@@ -19,7 +19,7 @@ public class WorkTimePolicySet {
 
     List<FixWorkTimePolicy> workTimePolicyList = new ArrayList<FixWorkTimePolicy>();
 
-    void addPolicy(FixWorkTimePolicy policy) {
+    public void addPolicy(FixWorkTimePolicy policy) {
         workTimePolicyList.add(policy);
     }
 

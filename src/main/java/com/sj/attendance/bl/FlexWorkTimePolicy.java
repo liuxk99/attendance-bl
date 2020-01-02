@@ -18,6 +18,12 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
         this.latestCheckInTime = latestCheckInTime;
     }
 
+    public FlexWorkTimePolicy(String name, String shortName, long checkInTime, long duration, long latestCheckInTime) {
+        super(name, shortName, checkInTime, duration);
+
+        this.latestCheckInTime = latestCheckInTime;
+    }
+
     public void setRealCheckInTime(long refTime) {
         this.realCheckInTime = refTime;
     }
