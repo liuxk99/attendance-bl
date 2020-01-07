@@ -1,7 +1,12 @@
 package com.sj.attendance.bl;
 
+import com.fasterxml.uuid.Generators;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import static com.sj.attendance.bl.TimeUtils.HOUR;
 
 public class WorkTimePolicyFactory {
     static List<FixWorkTimePolicy> createPolicies() {
@@ -53,5 +58,17 @@ public class WorkTimePolicyFactory {
         workTimePolicySet.addPolicy(policy);
 
         return workTimePolicySet;
+    }
+
+    public static FixWorkTimePolicy generateFlexPolicy() {
+        UUID uuid = Generators.timeBasedGenerator().generate();
+        FlexWorkTimePolicy policy = new FlexWorkTimePolicy("xx集团-固定工时-全天",
+                "全天",
+                TimeUtils.DEF_CHECK_IN_HOUR * HOUR,
+                (TimeUtils.DEF_CHECK_OUT_HOUR - TimeUtils.DEF_CHECK_IN_HOUR) * HOUR,
+                TimeUtils.DEF_LATEST_CHECK_IN_HOUR * HOUR
+        );
+        policy.setUuid(uuid);
+        return policy;
     }
 }

@@ -1,8 +1,31 @@
 package com.sj.attendance.bl;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class FixWorkTimePolicy {
+    // uuid
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    UUID uuid;
+
+    // id
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    int id;
+
     public String getName() {
         return name;
     }
