@@ -2,8 +2,6 @@ package com.sj.attendance.bl;
 
 import org.junit.Test;
 
-import java.util.Date;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -28,21 +26,6 @@ public class WorkTimePolicyTest {
     }
 
     @Test
-    public void testcase02_FixWorkTimeFullDay() throws Exception {
-        FixWorkTimePolicy policy = new StockFixWorkTimeFullDay();
-        System.out.println(policy);
-
-        Date now = new Date();
-//        System.out.println(now.getHours());
-//        System.out.println(now.getMinutes());
-//        System.out.println(now.getSeconds());
-
-        long time = TimeUtils.compoundTime(now.getHours(), now.getMinutes(), now.getSeconds());
-        assertTrue(policy.isLate(time));
-        assertTrue(policy.isEarlyLeave(time));
-    }
-
-    @Test
     public void testcase03_FixWorkTime_AM() throws Exception {
         FixWorkTimePolicy policy = new StockFixWorkTimeAM();
         System.out.println(policy);
@@ -62,11 +45,10 @@ public class WorkTimePolicyTest {
 
     @Test
     public void testcase05_FlexibleWorkTimeFullDay() throws Exception {
-        FlexWorkTimePolicy flexibleWorkTime = new StockFlexWorkTimeFullDay();
+        FlexWorkTimePolicy policy = new StockFlexWorkTimeFullDay();
         // 09:30 上班
-        flexibleWorkTime.setRealCheckInTime(WorkTimeCommonTest.REAL_CHECK_IN_TIME_09_30);
+        policy.setRealCheckInTime(WorkTimeCommonTest.REAL_CHECK_IN_TIME_09_30);
 
-        FixWorkTimePolicy policy = flexibleWorkTime;
         System.out.println(policy);
 
         WorkTimeCommonTest.testcase_FlexWorkTime_Morning_Late(policy);
