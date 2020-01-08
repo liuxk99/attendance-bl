@@ -9,7 +9,7 @@ import java.util.UUID;
 import static com.sj.attendance.bl.TimeUtils.HOUR;
 
 public class WorkTimePolicyFactory {
-    static List<FixWorkTimePolicy> createPolicies() {
+    static List<FixWorkTimePolicy> createStockPolicyList() {
         List<FixWorkTimePolicy> policies = new ArrayList<FixWorkTimePolicy>();
         policies.add(new StockFlexWorkTimeFullDay());
         policies.add(new StockFlexWorkTimeAM());
@@ -26,38 +26,54 @@ public class WorkTimePolicyFactory {
         return workTimePolicySetList;
     }
 
-    static WorkTimePolicySet createWorkTimePolicySetFixWorkTime() {
-        WorkTimePolicySet workTimePolicySet = new WorkTimePolicySet("XX集团-固定工时");
+    public static FixWorkTimePolicy createFixPolicyFD() {
         FixWorkTimePolicy policy = new StockFixWorkTimeFullDay();
         policy.setShortName(StockWorktime.SHORT_TILE_FULL);
-        workTimePolicySet.addPolicy(policy);
+        return policy;
+    }
 
-        policy = new StockFixWorkTimeAM();
+    public static FixWorkTimePolicy createFixPolicyAM() {
+        FixWorkTimePolicy policy = new StockFixWorkTimeAM();
         policy.setShortName(StockWorktime.SHORT_TILE_AM);
-        workTimePolicySet.addPolicy(policy);
+        return policy;
+    }
 
-        policy = new StockFixWorkTimePM();
+    public static FixWorkTimePolicy createFixPolicyPM() {
+        FixWorkTimePolicy policy = new StockFixWorkTimePM();
         policy.setShortName(StockWorktime.SHORT_TILE_PM);
-        workTimePolicySet.addPolicy(policy);
+        return policy;
+    }
 
+    static WorkTimePolicySet createWorkTimePolicySetFixWorkTime() {
+        WorkTimePolicySet workTimePolicySet = new WorkTimePolicySet("XX集团-固定工时");
+        {
+            workTimePolicySet.addPolicy(createFixPolicyFD());
+            workTimePolicySet.addPolicy(createFixPolicyAM());
+            workTimePolicySet.addPolicy(createFixPolicyPM());
+        }
         return workTimePolicySet;
     }
 
     static WorkTimePolicySet createWorkTimePolicySetFlexWorkTime() {
         WorkTimePolicySet workTimePolicySet = new WorkTimePolicySet("XX集团-弹性工时");
+        {
+            workTimePolicySet.addPolicy(createFlexPolicyFD());
+            workTimePolicySet.addPolicy(createFlexPolicyAM());
+            workTimePolicySet.addPolicy(createFixPolicyPM());
+        }
+        return workTimePolicySet;
+    }
+
+    public  static FixWorkTimePolicy createFlexPolicyFD() {
         FixWorkTimePolicy policy = new StockFlexWorkTimeFullDay();
         policy.setShortName(StockWorktime.SHORT_TILE_FULL);
-        workTimePolicySet.addPolicy(policy);
+        return policy;
+    }
 
-        policy = new StockFlexWorkTimeAM();
+    public  static FixWorkTimePolicy createFlexPolicyAM() {
+        StockFlexWorkTimeAM policy = new StockFlexWorkTimeAM();
         policy.setShortName(StockWorktime.SHORT_TILE_AM);
-        workTimePolicySet.addPolicy(policy);
-
-        policy = new StockFixWorkTimePM();
-        policy.setShortName(StockWorktime.SHORT_TILE_PM);
-        workTimePolicySet.addPolicy(policy);
-
-        return workTimePolicySet;
+        return policy;
     }
 
     public static FixWorkTimePolicy generateFlexPolicy() {
