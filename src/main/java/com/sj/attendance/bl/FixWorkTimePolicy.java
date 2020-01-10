@@ -1,11 +1,16 @@
 package com.sj.attendance.bl;
 
+import com.fasterxml.uuid.Generators;
+
 import java.util.Date;
 import java.util.UUID;
 
 public class FixWorkTimePolicy {
     // uuid
     public UUID getUuid() {
+        if (uuid == null) {
+            uuid = Generators.timeBasedGenerator().generate();
+        }
         return uuid;
     }
 
@@ -24,7 +29,7 @@ public class FixWorkTimePolicy {
         this.id = id;
     }
 
-    int id;
+    private int id;
 
     public String getName() {
         return name;
