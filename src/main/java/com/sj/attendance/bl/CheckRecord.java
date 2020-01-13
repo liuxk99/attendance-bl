@@ -45,10 +45,11 @@ public class CheckRecord {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(getClass().getSimpleName());
+        StringBuilder sb = new StringBuilder(getClass().getSimpleName() + "{\n");
         sb.append("name: " + policySetName + "\n")
                 .append("realCheckIn: " + realCheckInTime + "\n")
-                .append("realCheckOut: " + realCheckOutTime + "\n");
+                .append("realCheckOut: " + realCheckOutTime + "\n")
+                .append("}\n");
         return sb.toString();
     }
 }
