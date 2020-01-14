@@ -66,8 +66,13 @@ public class TimeUtils {
     }
 
     public static String formatDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return sdf.format(date);
+        String str;
+        if (date == null) {
+            date = new Date();
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        str = sdf.format(date);
+        return str;
     }
 
     public static long compoundTime(long offset) {
