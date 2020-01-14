@@ -59,6 +59,17 @@ public class TimeUtils {
         return String.format(Locale.getDefault(), "%02d:%02d", date.getHours(), date.getMinutes());
     }
 
+    public static String formatDate(long time) {
+        Date date = new Date();
+        date.setTime(time);
+        return formatDate(date);
+    }
+
+    public static String formatDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return sdf.format(date);
+    }
+
     public static long compoundTime(long offset) {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);

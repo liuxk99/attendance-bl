@@ -52,4 +52,17 @@ public class CheckRecord {
                 .append("}\n");
         return sb.toString();
     }
+
+    public boolean isLate() {
+        if (policy != null && realCheckInTime != null)
+            return policy.isLate(realCheckInTime);
+        return false;
+    }
+
+    public boolean isEarlyLeave() {
+        if (policy != null && realCheckOutTime != null)
+            return policy.isEarlyLeave(realCheckOutTime);
+
+        return false;
+    }
 }
