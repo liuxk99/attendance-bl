@@ -21,15 +21,15 @@ public class CheckRecord {
     private UUID uuid;
 
     // id
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    private int id;
+    private long id = -1L;
 
     public String policySetName;
     public FixWorkTimePolicy policy;
