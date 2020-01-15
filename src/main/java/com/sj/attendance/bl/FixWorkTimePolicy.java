@@ -1,11 +1,16 @@
 package com.sj.attendance.bl;
 
 import com.fasterxml.uuid.Generators;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 import java.util.UUID;
 
 public class FixWorkTimePolicy {
+    public static final String TAG = "clazz";
+    @SerializedName(TAG)
+    protected String clazz = FixWorkTimePolicy.class.getSimpleName();
+
     // uuid
     public UUID getUuid() {
         if (uuid == null) {

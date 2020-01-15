@@ -54,7 +54,7 @@ public class WorkTimePolicySetConfig {
     protected List<WorkTimePolicySet> policySetList = new ArrayList<>();
     //}}
 
-    protected WorkTimePolicySetConfig() {
+    public WorkTimePolicySetConfig() {
     }
 
     public void generateDef() {
@@ -65,28 +65,12 @@ public class WorkTimePolicySetConfig {
         FixWorkTimePolicy flexPolicyFD = WorkTimePolicyFactory.createFlexPolicyFD();
         FixWorkTimePolicy flexPolicyAM = WorkTimePolicyFactory.createFlexPolicyAM();
 
-//        {
-//            policyList.add(fixPolicyFD);
-//            policyList.add(fixPolicyAM);
-//            policyList.add(fixPolicyPM);
-//        }
-//
-//        {
-//            policyList.add(flexPolicyFD);
-//            policyIndex = 3;
-//
-//            policyList.add(flexPolicyAM);
-//        }
-
         WorkTimePolicySet flexWorkTimePolicySet = new WorkTimePolicySet("XX集团-弹性工时");
         {
             flexWorkTimePolicySet.addPolicy(flexPolicyFD);
             flexWorkTimePolicySet.addPolicy(flexPolicyAM);
             flexWorkTimePolicySet.addPolicy(fixPolicyPM);
-
             flexWorkTimePolicySet.setIndex(0);
-            policySetList.add(flexWorkTimePolicySet);
-            policySetIndex = 0;
         }
 
         WorkTimePolicySet fixWorkTimePolicySet = new WorkTimePolicySet("XX集团-固定工时");
@@ -96,39 +80,16 @@ public class WorkTimePolicySetConfig {
             fixWorkTimePolicySet.addPolicy(fixPolicyPM);
 
             fixWorkTimePolicySet.setIndex(0);
-            policySetList.add(fixWorkTimePolicySet);
         }
 
-//        setPolicy(flexPolicyFD);
+        policySetList.add(flexWorkTimePolicySet);
+        policySetList.add(fixWorkTimePolicySet);
+
+        policySetIndex = 0;
+        policySet = flexWorkTimePolicySet;
     }
 
-    //
-//    public FixWorkTimePolicy getPolicy() {
-//        return policy;
-//    }
-//
-//    public void setPolicy(FixWorkTimePolicy policy) {
-//        System.out.println("setPolicy(" + policy + ")");
-//
-//        if (policy != this.policy) {
-//            this.policy = policy;
-//
-//            int index = 0;
-//            for (FixWorkTimePolicy p : policyList) {
-//                if (p == policy) {
-//                    policyIndex = index;
-//                    break;
-//                }
-//                index++;
-//            }
-//        }
-//    }
-//
-//    public void setPolicyIndex(int policyIndex) {
-//        System.out.println("setPolicyIndex(" + policyIndex + ")");
-//        if (policyIndex != this.policyIndex) {
-//            this.policyIndex = policyIndex;
-//            this.policy = policyList.get(policyIndex);
-//        }
-//    }
+    public FixWorkTimePolicy getPolicy() {
+        return getPolicySet().getPolicy();
+    }
 }

@@ -5,8 +5,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.fasterxml.uuid/java-uuid-generator
     api group: 'com.fasterxml.uuid', name: 'java-uuid-generator', version: '3.1.0'
-    implementation 'org.json:json:20190722'
-    implementation 'com.google.code.gson:gson:2.8.6'
+    api 'org.json:json:20190722'
+    api 'com.google.code.gson:gson:2.8.6'
 
     testImplementation 'junit:junit:4.12'
 }

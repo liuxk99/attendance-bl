@@ -1,6 +1,7 @@
 package com.sj.attendance.bl;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,24 +26,26 @@ public class WorkTimePolicySetConfigTest {
 
     @Test
     public void testcase_001() throws Exception {
-        Gson gson = new Gson();
+        Gson gsonTo = new Gson();
 
         WorkTimePolicySetConfig obj = new WorkTimePolicySetConfig();
         obj.generateDef();
 
-        // 1. Java object to JSON file
-        Writer writer = Files.newBufferedWriter(Paths.get(CONF_FILE));
-        gson.toJson(obj, writer);
-        writer.close();
+        // serialization
+        String json = gsonTo.toJson(obj);
+        System.out.println(json);
 
-        // 2. Java object to JSON string
-        String jsonInString = gson.toJson(obj);
+        // deserialization
+        PolicyDeserializerAdapter deserializer = new PolicyDeserializerAdapter(FixWorkTimePolicy.TAG);
 
-        System.out.println(jsonInString);
+        // registering each Type into the Deserializer's HashMap (key-value pair),
+        // where the key (String) must be carried by the object (you can find it in the BaseClass,
+        // called "clazz")
+        deserializer.registerClassType(FlexWorkTimePolicy.class.getSimpleName(), FlexWorkTimePolicy.class);
+        deserializer.registerClassType(FixWorkTimePolicy.class.getSimpleName(), FixWorkTimePolicy.class);
+        Gson gsonFrom = new GsonBuilder().registerTypeAdapter(FixWorkTimePolicy.class, deserializer).create();
 
-        // from JSON file
-        FileReader fileReader = new FileReader(CONF_FILE);
-        WorkTimePolicySetConfig config = gson.fromJson(fileReader, WorkTimePolicySetConfig.class);
+        WorkTimePolicySetConfig config = gsonFrom.fromJson(json, WorkTimePolicySetConfig.class);
 
         int policySetIndex = config.getPolicySetIndex();
         config.setPolicySet(config.getPolicySetList().get(policySetIndex));
@@ -50,6 +53,42 @@ public class WorkTimePolicySetConfigTest {
             int policyIndex = policySet.getIndex();
             policySet.setPolicy(policySet.getPolicyList().get(policyIndex));
         }
+        System.out.println("---");
+        System.out.println(config);
+        System.out.println("---");
+    }
+
+    @Test
+    public void testcase_002() throws Exception {
+        Gson gsonTo = new Gson();
+
+        WorkTimePolicySetConfig obj = new WorkTimePolicySetConfig();
+        obj.generateDef();
+
+        Writer writer = Files.newBufferedWriter(Paths.get(CONF_FILE));
+        gsonTo.toJson(obj, writer);
+        writer.close();
+
+        PolicyDeserializerAdapter deserializer = new PolicyDeserializerAdapter(FixWorkTimePolicy.TAG);
+
+        // registering each Type into the Deserializer's HashMap (key-value pair),
+        // where the key (String) must be carried by the object (you can find it in the BaseClass,
+        // called "clazz")
+        deserializer.registerClassType(FlexWorkTimePolicy.class.getSimpleName(), FlexWorkTimePolicy.class);
+        deserializer.registerClassType(FixWorkTimePolicy.class.getSimpleName(), FixWorkTimePolicy.class);
+        Gson gsonFrom = new GsonBuilder().registerTypeAdapter(FixWorkTimePolicy.class, deserializer).create();
+
+        // from JSON file
+        FileReader fileReader = new FileReader(CONF_FILE);
+        WorkTimePolicySetConfig config = gsonFrom.fromJson(fileReader, WorkTimePolicySetConfig.class);
+
+        int policySetIndex = config.getPolicySetIndex();
+        config.setPolicySet(config.getPolicySetList().get(policySetIndex));
+        for (WorkTimePolicySet policySet : config.getPolicySetList()) {
+            int policyIndex = policySet.getIndex();
+            policySet.setPolicy(policySet.getPolicyList().get(policyIndex));
+        }
+
         System.out.println("---");
         System.out.println(config);
         System.out.println("---");

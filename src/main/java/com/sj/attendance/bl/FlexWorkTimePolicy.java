@@ -14,12 +14,14 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
 
     public FlexWorkTimePolicy(String name, long checkInTime, long duration, long latestCheckInTime) {
         super(name, checkInTime, duration);
+        this.clazz = FlexWorkTimePolicy.class.getSimpleName();
 
         this.latestCheckInTime = latestCheckInTime;
     }
 
     public FlexWorkTimePolicy(String name, String shortName, long checkInTime, long duration, long latestCheckInTime) {
         super(name, shortName, checkInTime, duration);
+        this.clazz = this.getClass().getSimpleName();
 
         this.latestCheckInTime = latestCheckInTime;
     }
