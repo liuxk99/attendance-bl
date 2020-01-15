@@ -71,6 +71,7 @@ public class WorkTimePolicySetConfig {
             flexWorkTimePolicySet.addPolicy(flexPolicyAM);
             flexWorkTimePolicySet.addPolicy(fixPolicyPM);
             flexWorkTimePolicySet.setIndex(0);
+            flexWorkTimePolicySet.setPolicy(flexPolicyFD);
         }
 
         WorkTimePolicySet fixWorkTimePolicySet = new WorkTimePolicySet("XX集团-固定工时");
@@ -80,6 +81,7 @@ public class WorkTimePolicySetConfig {
             fixWorkTimePolicySet.addPolicy(fixPolicyPM);
 
             fixWorkTimePolicySet.setIndex(0);
+            fixWorkTimePolicySet.setPolicy(fixPolicyFD);
         }
 
         policySetList.add(flexWorkTimePolicySet);
