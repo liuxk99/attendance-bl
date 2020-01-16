@@ -64,6 +64,15 @@ public class FixWorkTimePolicy {
         return checkInTime;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o.getClass().equals(FixWorkTimePolicy.class)){
+            FixWorkTimePolicy policy = (FixWorkTimePolicy) o;
+            return this.uuid.equals(policy.uuid);
+        }
+        return false;
+    }
+
     public FixWorkTimePolicy(String name, String shortName, long checkInTime, long duration) {
         this.name = name;
         this.shortName = shortName;

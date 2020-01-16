@@ -1,5 +1,7 @@
 package com.sj.attendance.bl;
 
+import com.fasterxml.uuid.Generators;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -14,7 +16,7 @@ public class WorkTimePolicySet {
         this.uuid = uuid;
     }
 
-    private UUID uuid;
+    private UUID uuid = Generators.timeBasedGenerator().generate();
 
     public String getName() {
         return name;
@@ -29,10 +31,19 @@ public class WorkTimePolicySet {
         return policyList;
     }
 
-    private List<FixWorkTimePolicy> policyList = new ArrayList<FixWorkTimePolicy>();
+    private List<FixWorkTimePolicy> policyList = new ArrayList<>();
 
     public void addPolicy(FixWorkTimePolicy policy) {
         policyList.add(policy);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o.getClass().equals(WorkTimePolicySet.class)) {
+            WorkTimePolicySet policySet = (WorkTimePolicySet) o;
+            return uuid.equals(policySet.getUuid());
+        }
+        return false;
     }
 
     public WorkTimePolicySet(String name) {

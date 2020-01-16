@@ -20,7 +20,7 @@ public class WorkTimePolicyFactory {
     }
 
     public static List<WorkTimePolicySet> createWorkTimePolicySetList() {
-        List<WorkTimePolicySet> workTimePolicySetList = new ArrayList<WorkTimePolicySet>();
+        List<WorkTimePolicySet> workTimePolicySetList = new ArrayList<>();
         workTimePolicySetList.add(createWorkTimePolicySetFixWorkTime());
         workTimePolicySetList.add(createWorkTimePolicySetFlexWorkTime());
         return workTimePolicySetList;
