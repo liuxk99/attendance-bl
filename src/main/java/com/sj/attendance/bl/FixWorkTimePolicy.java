@@ -13,9 +13,6 @@ public class FixWorkTimePolicy {
 
     // uuid
     public UUID getUuid() {
-        if (uuid == null) {
-            uuid = Generators.timeBasedGenerator().generate();
-        }
         return uuid;
     }
 
@@ -23,7 +20,7 @@ public class FixWorkTimePolicy {
         this.uuid = uuid;
     }
 
-    UUID uuid;
+    UUID uuid = Generators.timeBasedGenerator().generate();
 
     // id
     public int getId() {
@@ -67,12 +64,6 @@ public class FixWorkTimePolicy {
         return checkInTime;
     }
 
-    public FixWorkTimePolicy(String name, long checkInTime, long duration) {
-        this.name = name;
-        this.checkInTime = checkInTime;
-        this.duration = duration;
-    }
-
     public FixWorkTimePolicy(String name, String shortName, long checkInTime, long duration) {
         this.name = name;
         this.shortName = shortName;
@@ -84,6 +75,7 @@ public class FixWorkTimePolicy {
     public String toString() {
         return name + ":\n" +
                 "shortName " + shortName + "\n" +
+                "uuid: " + uuid + "\n" +
                 "checkIn " + TimeUtils.formatRefTime(checkInTime) + "\n" +
                 "duration " + TimeUtils.formatRefTime(duration) + "\n" +
                 "checkOut " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";

@@ -12,18 +12,11 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
         return latestCheckInTime;
     }
 
-    public FlexWorkTimePolicy(String name, long checkInTime, long duration, long latestCheckInTime) {
-        super(name, checkInTime, duration);
-        this.clazz = FlexWorkTimePolicy.class.getSimpleName();
-
-        this.latestCheckInTime = latestCheckInTime;
-    }
-
     public FlexWorkTimePolicy(String name, String shortName, long checkInTime, long duration, long latestCheckInTime) {
         super(name, shortName, checkInTime, duration);
-        this.clazz = this.getClass().getSimpleName();
-
         this.latestCheckInTime = latestCheckInTime;
+
+        this.clazz = FlexWorkTimePolicy.class.getSimpleName();
     }
 
     public void setRealCheckInTime(long refTime) {
@@ -61,6 +54,7 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
     @Override
     public String toString() {
         return name + ":\n" +
+                "uuid: " + uuid + "\n" +
                 "checkIn: " + toCheckIn() + "\n" +
                 "checkOut: " + toCheckOut() + "\n" +
                 "real CheckIn: " + TimeUtils.formatRefTime(realCheckInTime) + "\n" +

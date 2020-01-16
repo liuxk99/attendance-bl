@@ -5,6 +5,9 @@ class StockFixWorkTimePM extends FixWorkTimePolicy {
 
     StockFixWorkTimePM() {
         // 14:00到18:00，中间4个小时
-        super(StockWorktime.HALF_DAY_SECOND, 14 * TimeUtils.HOUR, 4 * TimeUtils.HOUR);
+        super(StockWorkTime.ALL_PM,
+                StockWorkTime.SHORT_TILE_PM,
+                14 * TimeUtils.HOUR,
+                4 * TimeUtils.HOUR);
     }
 }

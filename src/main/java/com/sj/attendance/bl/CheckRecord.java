@@ -36,9 +36,16 @@ public class CheckRecord {
     public Date realCheckInTime;
     public Date realCheckOutTime;
 
-    public CheckRecord(String policySetName, FixWorkTimePolicy policy, Date realCheckInDate, Date realCheckOutDate) {
+    public CheckRecord(String policySetName, Date realCheckInDate, Date realCheckOutDate, FixWorkTimePolicy policy) {
         this.policySetName = policySetName;
         this.policy = policy;
+        this.realCheckInTime = realCheckInDate;
+        this.realCheckOutTime = realCheckOutDate;
+    }
+
+    public CheckRecord(String policySetName, Date realCheckInDate, Date realCheckOutDate, UUID policyUuid) {
+        this.policySetName = policySetName;
+        this.policyUuid = policyUuid;
         this.realCheckInTime = realCheckInDate;
         this.realCheckOutTime = realCheckOutDate;
     }
@@ -65,4 +72,14 @@ public class CheckRecord {
 
         return false;
     }
+
+    public UUID getPolicyUuid() {
+        return policyUuid;
+    }
+
+    public void setPolicyUuid(UUID policyUuid) {
+        this.policyUuid = policyUuid;
+    }
+
+    private UUID policyUuid;
 }

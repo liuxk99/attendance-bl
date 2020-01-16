@@ -28,19 +28,19 @@ public class WorkTimePolicyFactory {
 
     public static FixWorkTimePolicy createFixPolicyFD() {
         FixWorkTimePolicy policy = new StockFixWorkTimeFullDay();
-        policy.setShortName(StockWorktime.SHORT_TILE_FULL);
+        policy.setShortName(StockWorkTime.SHORT_TILE_FULL);
         return policy;
     }
 
     public static FixWorkTimePolicy createFixPolicyAM() {
         FixWorkTimePolicy policy = new StockFixWorkTimeAM();
-        policy.setShortName(StockWorktime.SHORT_TILE_AM);
+        policy.setShortName(StockWorkTime.SHORT_TILE_AM);
         return policy;
     }
 
     public static FixWorkTimePolicy createFixPolicyPM() {
         FixWorkTimePolicy policy = new StockFixWorkTimePM();
-        policy.setShortName(StockWorktime.SHORT_TILE_PM);
+        policy.setShortName(StockWorkTime.SHORT_TILE_PM);
         return policy;
     }
 
@@ -66,13 +66,13 @@ public class WorkTimePolicyFactory {
 
     public  static FixWorkTimePolicy createFlexPolicyFD() {
         FixWorkTimePolicy policy = new StockFlexWorkTimeFullDay();
-        policy.setShortName(StockWorktime.SHORT_TILE_FULL);
+        policy.setShortName(StockWorkTime.SHORT_TILE_FULL);
         return policy;
     }
 
     public  static FixWorkTimePolicy createFlexPolicyAM() {
         StockFlexWorkTimeAM policy = new StockFlexWorkTimeAM();
-        policy.setShortName(StockWorktime.SHORT_TILE_AM);
+        policy.setShortName(StockWorkTime.SHORT_TILE_AM);
         return policy;
     }
 
