@@ -113,11 +113,13 @@ public class TimeUtils {
     }
 
     static public long getDayDate(Date date) {
-        Date tmp = (Date) date.clone();
-        tmp.setHours(0);
-        tmp.setMinutes(0);
-        tmp.setSeconds(0);
-        return tmp.getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.set(Calendar.YEAR, date.getYear());
+        calendar.set(Calendar.MONTH, date.getMonth());
+        calendar.set(Calendar.DAY_OF_MONTH, date.getDay());
+
+        return calendar.getTimeInMillis();
     }
 
     public static long getDayTime(Date date) {

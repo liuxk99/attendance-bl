@@ -8,9 +8,6 @@ import java.util.UUID;
 public class CheckRecord {
     // uuid
     public UUID getUuid() {
-        if (uuid == null) {
-            uuid = Generators.timeBasedGenerator().generate();
-        }
         return uuid;
     }
 
@@ -18,7 +15,7 @@ public class CheckRecord {
         this.uuid = uuid;
     }
 
-    private UUID uuid;
+    private UUID uuid = Generators.timeBasedGenerator().generate();
 
     // id
     public long getId() {
@@ -39,6 +36,9 @@ public class CheckRecord {
     public CheckRecord(String policySetName, Date realCheckInDate, Date realCheckOutDate, FixWorkTimePolicy policy) {
         this.policySetName = policySetName;
         this.policy = policy;
+        if (policy != null) {
+            this.policyUuid = policy.getUuid();
+        }
         this.realCheckInTime = realCheckInDate;
         this.realCheckOutTime = realCheckOutDate;
     }
@@ -52,12 +52,15 @@ public class CheckRecord {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(getClass().getSimpleName() + "{\n");
-        sb.append("name: " + policySetName + "\n")
-                .append("realCheckIn: " + realCheckInTime + "\n")
-                .append("realCheckOut: " + realCheckOutTime + "\n")
-                .append("}\n");
-        return sb.toString();
+        final String LF = "\n";
+        String sb = getClass().getSimpleName() + "{\n" + "name: " + policySetName + LF +
+                "id: " + getId() + LF +
+                "uuid: " + getUuid() + LF +
+                "policyUuid: " + policyUuid + LF +
+                "realCheckIn: " + realCheckInTime + LF +
+                "realCheckOut: " + realCheckOutTime + LF +
+                "}\n";
+        return sb;
     }
 
     public boolean isLate() {
@@ -82,4 +85,38 @@ public class CheckRecord {
     }
 
     private UUID policyUuid;
+
+    public static CheckRecord randomInstance(String policySetName, FixWorkTimePolicy policy) {
+        CheckRecord checkRecord;
+        {
+            Date realCheckInDate = randomCheckInTime(policy);
+            Date realCheckOutDate = randomCheckOutTime(policy);
+
+            checkRecord = new CheckRecord(policySetName,
+                    realCheckInDate, realCheckOutDate,
+                    policy);
+        }
+        return checkRecord;
+    }
+
+    private static Date randomCheckInTime(FixWorkTimePolicy policy) {
+        Date realCheckInDate;
+        {
+            long realCheckInTime = TimeUtils.getDayDate(new Date()) + policy.randomCheckInTime();
+            realCheckInDate = new Date();
+            realCheckInDate.setTime(realCheckInTime);
+        }
+        return realCheckInDate;
+    }
+
+    public static Date randomCheckOutTime(FixWorkTimePolicy policy) {
+        Date realCheckOutDate;
+        {
+            long realCheckOutTime = TimeUtils.getDayDate(new Date()) + policy.randomCheckOutTime();
+            realCheckOutDate = new Date();
+            realCheckOutDate.setTime(realCheckOutTime);
+
+        }
+        return realCheckOutDate;
+    }
 }

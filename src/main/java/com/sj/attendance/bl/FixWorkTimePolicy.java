@@ -131,4 +131,14 @@ public class FixWorkTimePolicy {
     public long getPlanCheckOutTime(Date checkInDate) {
         return TimeUtils.getDayDate(checkInDate) + getCheckOutTime();
     }
+
+    public long randomCheckOutTime() {
+        long checkOutOffset = (long) ((Math.random() - 0.5) * TimeUtils.HOUR);
+        return getCheckOutTime() + checkOutOffset;
+    }
+
+    public long randomCheckInTime() {
+        long checkInOffset = (long) ((Math.random() - 0.5) * TimeUtils.HOUR);
+        return checkInTime + checkInOffset;
+    }
 }

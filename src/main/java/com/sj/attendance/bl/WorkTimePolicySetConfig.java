@@ -94,4 +94,22 @@ public class WorkTimePolicySetConfig {
     public FixWorkTimePolicy getPolicy() {
         return getPolicySet().getPolicy();
     }
+
+    public FixWorkTimePolicy generateRandomPolicy() {
+        FixWorkTimePolicy policy = null;
+        {
+            if (!policySetList.isEmpty()) {
+                int r = (int) (Math.random() * policySetList.size());
+                int idx = r % policySetList.size();
+                WorkTimePolicySet policySet = policySetList.get(idx);
+
+                if (!policySet.getPolicyList().isEmpty()) {
+                    r = (int) (Math.random() * policySet.getPolicyList().size());
+                    idx = r % policySet.getPolicyList().size();
+                    policy = policySet.getPolicyList().get(idx);
+                }
+            }
+        }
+        return policy;
+    }
 }
