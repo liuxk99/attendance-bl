@@ -1,6 +1,7 @@
 package com.sj.attendance.bl;
 
 import com.fasterxml.uuid.Generators;
+import com.sj.time.DateTimeUtils;
 
 import java.util.Date;
 import java.util.UUID;
@@ -102,7 +103,7 @@ public class CheckRecord {
     private static Date randomCheckInTime(FixWorkTimePolicy policy) {
         Date realCheckInDate;
         {
-            long realCheckInTime = TimeUtils.getDayDate(new Date()) + policy.randomCheckInTime();
+            long realCheckInTime = DateTimeUtils.getDayDate(new Date()) + policy.randomCheckInTime();
             realCheckInDate = new Date();
             realCheckInDate.setTime(realCheckInTime);
         }
@@ -112,7 +113,7 @@ public class CheckRecord {
     public static Date randomCheckOutTime(FixWorkTimePolicy policy) {
         Date realCheckOutDate;
         {
-            long realCheckOutTime = TimeUtils.getDayDate(new Date()) + policy.randomCheckOutTime();
+            long realCheckOutTime = DateTimeUtils.getDayDate(new Date()) + policy.randomCheckOutTime();
             realCheckOutDate = new Date();
             realCheckOutDate.setTime(realCheckOutTime);
 

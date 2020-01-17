@@ -2,6 +2,7 @@ package com.sj.attendance.bl;
 
 import com.fasterxml.uuid.Generators;
 import com.google.gson.annotations.SerializedName;
+import com.sj.time.DateTimeUtils;
 
 import java.util.Date;
 import java.util.UUID;
@@ -85,16 +86,16 @@ public class FixWorkTimePolicy {
         return name + ":\n" +
                 "shortName " + shortName + "\n" +
                 "uuid: " + uuid + "\n" +
-                "checkIn " + TimeUtils.formatRefTime(checkInTime) + "\n" +
-                "duration " + TimeUtils.formatRefTime(duration) + "\n" +
-                "checkOut " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";
+                "checkIn " + DateTimeUtils.formatRefTime(checkInTime) + "\n" +
+                "duration " + DateTimeUtils.formatRefTime(duration) + "\n" +
+                "checkOut " + DateTimeUtils.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     public String toShortString() {
         return shortName + ":\n" +
-                "checkIn " + TimeUtils.formatRefTime(checkInTime) + "\n" +
-                "duration " + TimeUtils.formatRefTime(duration) + "\n" +
-                "checkOut " + TimeUtils.formatRefTime(getCheckOutTime()) + "\n";
+                "checkIn " + DateTimeUtils.formatRefTime(checkInTime) + "\n" +
+                "duration " + DateTimeUtils.formatRefTime(duration) + "\n" +
+                "checkOut " + DateTimeUtils.formatRefTime(getCheckOutTime()) + "\n";
     }
 
     public long getCheckOutTime() {
@@ -106,7 +107,7 @@ public class FixWorkTimePolicy {
     }
 
     public boolean isLate(Date realCheckInDate) {
-        return TimeUtils.getDayTime(realCheckInDate) > checkInTime;
+        return DateTimeUtils.getDayTime(realCheckInDate) > checkInTime;
     }
 
     // 早退
@@ -116,29 +117,29 @@ public class FixWorkTimePolicy {
 
     // 早退
     public boolean isEarlyLeave(Date realCheckOutDate) {
-        long realCheckOutTime = TimeUtils.getDayTime(realCheckOutDate);
+        long realCheckOutTime = DateTimeUtils.getDayTime(realCheckOutDate);
         return realCheckOutTime < this.getCheckOutTime();
     }
 
     public String toCheckIn() {
-        return TimeUtils.formatRefTime(checkInTime);
+        return DateTimeUtils.formatRefTime(checkInTime);
     }
 
     public String toCheckOut() {
-        return TimeUtils.formatRefTime(getCheckOutTime());
+        return DateTimeUtils.formatRefTime(getCheckOutTime());
     }
 
     public long getPlanCheckOutTime(Date checkInDate) {
-        return TimeUtils.getDayDate(checkInDate) + getCheckOutTime();
+        return DateTimeUtils.getDayDate(checkInDate) + getCheckOutTime();
     }
 
     public long randomCheckOutTime() {
-        long checkOutOffset = (long) ((Math.random() - 0.5) * TimeUtils.HOUR);
+        long checkOutOffset = (long) ((Math.random() - 0.5) * DateTimeUtils.HOUR);
         return getCheckOutTime() + checkOutOffset;
     }
 
     public long randomCheckInTime() {
-        long checkInOffset = (long) ((Math.random() - 0.5) * TimeUtils.HOUR);
+        long checkInOffset = (long) ((Math.random() - 0.5) * DateTimeUtils.HOUR);
         return checkInTime + checkInOffset;
     }
 }

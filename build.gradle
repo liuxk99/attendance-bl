@@ -9,6 +9,7 @@ dependencies {
     api 'com.google.code.gson:gson:2.8.6'
 
     testImplementation 'junit:junit:4.12'
+    api project(path: ':libTime')
 }
 
 sourceCompatibility = "7"
