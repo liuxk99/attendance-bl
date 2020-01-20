@@ -55,7 +55,7 @@ public class FlexWorkTimePolicy extends FixWorkTimePolicy {
 
     @Override
     public boolean equals(Object o) {
-        if (o.getClass().equals(FlexWorkTimePolicy.class)){
+        if (o instanceof FlexWorkTimePolicy) {
             FlexWorkTimePolicy policy = (FlexWorkTimePolicy) o;
             return this.uuid.equals(policy.uuid);
         }
